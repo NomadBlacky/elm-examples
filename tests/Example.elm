@@ -13,8 +13,8 @@ suite : Test
 suite =
     describe "The String module"
         [ describe "String.reverse"
-            -- Nest as many descriptions as you like.
-            [ test "has no effect on a palindrome" <|
+            -- `describe` はネストできる
+            [ test "回文には何も影響を与えない" <|
                 \_ ->
                     let
                         palindrome =
@@ -22,15 +22,16 @@ suite =
                     in
                     Expect.equal palindrome (String.reverse palindrome)
 
-            -- Expect.equal is designed to be used in pipeline style, like this.
-            , test "reverses a known string" <|
+            -- Expect.equal はパイプラインを使って書けるようになっている
+            , test "文字列を反転する" <|
                 \_ ->
                     "ABCDEFG"
                         |> String.reverse
                         |> Expect.equal "GFEDCBA"
 
-            -- fuzz runs the test 100 times with randomly-generated inputs!
-            , fuzz string "restores the original string if you run it again" <|
+            -- fuzz はランダムな入力値を自動生成してテストを実行してくれる
+            -- ここではランダムな文字列を100回生成してテストを実行する
+            , fuzz string "2度実行するともとの文字列に戻る" <|
                 \randomlyGeneratedString ->
                     randomlyGeneratedString
                         |> String.reverse
