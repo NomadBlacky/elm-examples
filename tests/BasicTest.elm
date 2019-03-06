@@ -29,4 +29,13 @@ suite =
             , test "余剰" <|
                 \_ -> Expect.equal (remainderBy 3 5) 2
             ]
+        , describe "文字列"
+            [ test "文字列同士の連結" <|
+                \_ -> Expect.equal ("Hello, " ++ "Elm!") "Hello, Elm!"
+            , test "生文字列" <|
+                \_ -> Expect.equal """one "two" three""" "one \"two\" three"
+            , test "文字" <|
+                -- シングルクオート
+                \_ -> 'a' |> (\_ -> pass)
+            ]
         ]
