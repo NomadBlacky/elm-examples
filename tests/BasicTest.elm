@@ -38,4 +38,16 @@ suite =
                 -- シングルクオート
                 \_ -> 'a' |> (\_ -> pass)
             ]
+        , describe "真理値" <|
+            [ test "真" <|
+                \_ -> True |> (\_ -> pass)
+            , test "偽" <|
+                \_ -> False |> (\_ -> pass)
+            , test "否定" <|
+                \_ -> Expect.equal (not True) False
+            , test "AND演算" <|
+                \_ -> Expect.equal (True && False) False
+            , test "OR演算" <|
+                \_ -> Expect.equal (True || False) True
+            ]
         ]
