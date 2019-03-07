@@ -56,4 +56,9 @@ suite =
             , test "同一でない" <|
                 \_ -> Expect.equal (1 /= 1) False
             ]
+        , describe "関数適用" <|
+            [ test "関数の適用順序" <|
+                -- 関数の適用は演算子より優先される
+                \_ -> Expect.equal (1 + max 2 1 + 3) 6
+            ]
         ]
