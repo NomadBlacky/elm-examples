@@ -50,4 +50,10 @@ suite =
             , test "OR演算" <|
                 \_ -> Expect.equal (True || False) True
             ]
+        , describe "値の比較" <|
+            [ test "同値比較" <|
+                \_ -> Expect.equal (1 == 1) True
+            , test "同一でない" <|
+                \_ -> Expect.equal (1 /= 1) False
+            ]
         ]
