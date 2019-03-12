@@ -90,5 +90,17 @@ suite =
                     in
                     -- 残りの引数を適用する
                     Expect.equal (makeUrl2 "/index.html") "https://example.com/index.html"
+            , test "演算子" <|
+                \_ ->
+                    let
+                        -- 中間演算子は関数としても使うことができる
+                        expect =
+                            (+) 100 100
+
+                        -- 部分適用も可能
+                        x10 =
+                            (*) 10
+                    in
+                    Expect.equal (x10 20) expect
             ]
         ]
