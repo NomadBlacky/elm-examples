@@ -56,13 +56,11 @@ suite =
             , test "同一でない" <|
                 \_ -> Expect.equal (1 /= 1) False
             ]
-        , describe "関数適用" <|
+        , describe "関数" <|
             [ test "関数の適用順序" <|
                 -- 関数の適用は演算子より優先される
                 \_ -> Expect.equal (1 + max 2 1 + 3) 6
-            ]
-        , describe "関数を定義する" <|
-            [ test "関数定義" <|
+            , test "関数を定義する" <|
                 \_ ->
                     let
                         -- 関数名は小文字から始めて、キャメルケースにする。
@@ -77,5 +75,8 @@ suite =
                             scheme ++ "://" ++ authority ++ path
                     in
                     Expect.equal (makeUrl "https" "example.com" "/index.html") "https://example.com/index.html"
+            , test "匿名関数" <|
+                -- \引数名 引数名 .. -> 式
+                \_ -> Expect.equal ((\n -> n < 0) -5.5) True
             ]
         ]
