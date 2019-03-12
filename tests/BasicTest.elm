@@ -78,5 +78,17 @@ suite =
             , test "匿名関数" <|
                 -- \引数名 引数名 .. -> 式
                 \_ -> Expect.equal ((\n -> n < 0) -5.5) True
+            , test "部分適用" <|
+                \_ ->
+                    let
+                        makeUrl scheme authority path =
+                            scheme ++ "://" ++ authority ++ path
+
+                        -- 関数の一部に引数を渡すと関数が返る
+                        makeUrl2 =
+                            makeUrl "https" "example.com"
+                    in
+                    -- 残りの引数を適用する
+                    Expect.equal (makeUrl2 "/index.html") "https://example.com/index.html"
             ]
         ]
