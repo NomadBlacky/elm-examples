@@ -103,4 +103,36 @@ suite =
                     in
                     Expect.equal (x10 20) expect
             ]
+        , describe "if式" <|
+            [ test "条件分岐にはif式" <|
+                \_ ->
+                    let
+                        -- else は省略できない
+                        str =
+                            if True then
+                                "A"
+
+                            else
+                                "B"
+                    in
+                    Expect.equal str "A"
+            , test "複数の条件分岐" <|
+                \_ ->
+                    let
+                        -- else if でつなげる
+                        fizzBuzz n =
+                            if remainderBy 15 n == 0 then
+                                "FizzBuzz"
+
+                            else if remainderBy 3 n == 0 then
+                                "Fizz"
+
+                            else if remainderBy 5 n == 0 then
+                                "Buzz"
+
+                            else
+                                String.fromInt n
+                    in
+                    Expect.equal (fizzBuzz 10) "Buzz"
+            ]
         ]
